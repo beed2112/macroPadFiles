@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: 2021 Emma Humphries for Adafruit Industries
+#
+# SPDX-License-Identifier: MIT
+
+# MACROPAD Hotkeys example: Firefox web browser for Linux
+
+from adafruit_hid.keycode import Keycode # REQUIRED if using Keycode.* values
+
+app = {                       # REQUIRED dict, must be named 'app'
+    'name' : 'HTTP Enum', # Application name
+    'macros' : [              # List of button macros...
+        # COLOR    LABEL    KEY SEQUENCE
+        # 1st row ----------
+        (0x004000, 'expt ', ['export targetHTTP=<ip> ;export targetPortHTTP=<port>]),                     
+        (0x400000, 'nikto', ['nikto -host http://$targetHTTP:$targetPortHTTP| tee $targetHTTP-$targetPortHTTP.NIKTO.txt']),                     
+        (0x004000, 'ffufd ', ['ffuf -recursion -recursion-depth 3 -t 50 -fc 403,302 -e .php,.ini,.txt,.swp,.bak -w /usr/share/wordlists/dirb/big.txt -of all  -o $targetHTTP-$targetPortHTTP-vdir-fuff -u http://$targetHTTP:$targetPortHTTP/FUZZ']),   
+        # 2nd row ----------
+        (0x000040, 'ffufv', ['ffuf -w /usr/share/seclists/Discovery/DNS/namelist.txt -u http://$targetHTTP -H "Host: FUZZ.<change>.<me>" -of all -o  $targetHTTP.VHOSTS']),
+        (0x000040, 'bustD', ['gobuster dir -u http://$targetHTTP:$targetPortHTTP/ -w /usr/share/wordlists/dirb/big.txt -e -x php,ini,txt,swp,bak -t 50 -b 302,404 -o $targetHTTP-$targetPortHTTP-gobuster']),
+        (0x101010, 'bustV', ['gobuster vhost -u http://$targetHTTP -w /usr/share/seclists/Discovery/DNS/namelist.txt -o $targetHTTP.VHOSTS']), 
+        # 3rd row ----------
+        (0x000040, 'wp1', ['wpscan --enumerate ap --plugins-detection aggressive  --url ']),
+        (0x101010, 'wp2', ['wpscan --enumerate u  --url          #enumerate users ']), 
+        (0x000040, 'wp3', ['wpscan    -P /usr/share/wordlists/rockyou.txt -U <user>  -–url     passwd brute']), 
+        # 4th row ----------
+        (0x101010, 'wp2', ['wpscan --enumerate u  --url          #enumerate users ']), 
+        (0x000040, 'Help', [' batcat /media/beed2112/CIRCUITPY/notes/<changeme>.md']), 
+        (0x400000, 'enter', ['\n']),     # enter
+        # Encoder button ---
+        (0x000000, '', [ 'clear\n']) # clear

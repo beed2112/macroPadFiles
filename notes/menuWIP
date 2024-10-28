@@ -1,0 +1,116 @@
+
+
+
+
+MarcoPad 
+
+ 
+1 nmap port 
+2 nmap fingerprint
+3 nmap script
+4 nmap upd 
+5 
+6
+7 
+8  help
+9  entersudo nmap -p $(cat "portlist") -T5 -sV --version-all --script default,auth,brute,vuln -oN "scripts.txt" -oX "scripts.xml" -Pn -iL boxes
+
+
+
+DIR 1-ffuf 
+1 no recursion  no extensions big
+2 no recursion  extensions big
+3 recursion no extensions big
+4 resursion extensions big 
+5 no recursion no extensions $WORDLIST 
+6 no recurions extensons $WORDLIST 
+7 recursion extensons $WORDLIST 
+8 helo
+9 enter
+
+DIR 2-gobuster
+
+1 no recursion  no extensions big
+2 no recursion  extensions big
+3 recursion no extensions big
+4 resursion extensions big 
+5 no recursion no extensions $WORDLIST 
+6 no recurions extensons $WORDLIST 
+7 recursion extensons $WORDLIST 
+8 helo
+9 enter
+
+
+DIR 3-feroxbuster
+1 no recursion  no extensions big
+2 no recursion  extensions big
+3 recursion no extensions big
+4 resursion extensions big 
+5 no recursion no extensions $WORDLIST 
+6 no recurions extensons $WORDLIST 
+7 recursion extensons $WORDLIST 
+8 helo
+9 enter
+
+DIR 4-dirb 
+1 no recursion  no extensions big
+2 no recursion  extensions big
+3 recursion no extensions big
+4 resursion extensions big 
+5 no recursion no extensions $WORDLIST 
+6 no recurions extensons $WORDLIST 
+7 recursion extensons $WORDLIST 
+8 helo
+9 enter
+
+dir 5-wfuzz
+1 no recursion  no extensions big
+2 no recursion  extensions big
+3 recursion no extensions big
+4 resursion extensions big 
+5 no recursion no extensions $WORDLIST 
+6 no recurions extensons $WORDLIST 
+7 recursion extensons $WORDLIST 
+8 help
+9 enter
+
+
+
+dir 6-wordlists
+
+1 big - export WORDLIST=/usr/share/wordlists/dirb/big.txt && export WORDLISTLABEL=big
+2
+3
+4
+5
+6
+7
+8 help
+9 enter
+
+
+
+vhost 1-
+1
+2
+3
+4
+5
+6
+7
+8 help
+9 enter
+
+vhost  2-wordlists
+
+1
+2
+3
+4
+5
+6
+7
+8 help
+9 enter
+
+
